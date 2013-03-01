@@ -50,23 +50,23 @@ function lexer(input) {
 
   while (input != '') {
     if (m = blanks.exec(input)) {
-      input = input.substr(m.index+___________);
+      input = input.substr(m.index + m[0].length);
       out.push({ type : ________, match: _ });
     }
     else if (m = iniheader.exec(input)) {
-      input = input.substr(___________________);
-      _______________________________________ // avanzemos en input
+      input = input.substr(m.index + m[0].length);
+      out.push({ type : , match: }); // avanzemos en input
     }
     else if (m = comments.exec(input)) {
-      input = input.substr(___________________);
-      _________________________________________
+      input = input.substr(m.index + m[0].length);
+      out.push({ type :, match: });
     }
     else if (m = nameEqualValue.exec(input)) {
-      input = input.substr(___________________);
-      _______________________________________________
+      input = input.substr(m.index + m[0].length);
+      out.push({type :, match: });
     }
     else if (m = any.exec(input)) {
-      _______________________________________
+      out.push({type :, match: });
       input = '';
     }
     else {
@@ -76,3 +76,4 @@ function lexer(input) {
   }
   return out;
 }
+
