@@ -1,4 +1,4 @@
-"use emacs"; // Use ECMAScript 5 strict mode in browsers that support it
+"use strict"; // Use ECMAScript 5 strict mode in browsers that support it
 
 $(document).ready(function() {
    $("#fileinput").change(calculate);
@@ -39,17 +39,17 @@ function tokensToString(tokens) {
 }
 
 function lexer(input) {
-  var blanks         = /^___/;
-  var iniheader      = /^________________/;
-  var comments       = /^________/;
-  var nameEqualValue = /^________________________/;
-  var any            = /^_______/;
+  var blanks         = /^\s+$/;
+  var iniheader      = /^\[[a-zA-Z]\w*\]$/;
+  var comments       = /^;(\s|\w)+$/;
+  var nameEqualValue = /^[a-zA-Z]\w*\s*(?:=)/;
+  var any            = /^(?:=)\s*[a-zA-Z]\w*$/;
 
   var out = [];
   var m = null;
 
   while (input != '') {
-    if (m = blanks.____(input)) {
+    if (m = blanks.exec(input)) {
       input = input.substr(m.index+___________);
       out.push({ type : ________, match: _ });
     }
